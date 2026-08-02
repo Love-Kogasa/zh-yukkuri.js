@@ -1,3 +1,4 @@
 .vercel
 *.bak
 node_modules
+keep-deepcode.txt
