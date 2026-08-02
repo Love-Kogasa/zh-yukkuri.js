@@ -19,6 +19,7 @@ export default class Converter {
       Pinyin.parse(string.replaceAll(" ", "_"))
         .map( t => t.type === 2 ? t.target + " " : t.source )
         .join( "" ))
+      .replace("\n", " ")
       .replaceAll("_", " ")
       .replaceAll(" ", ",")
   }
