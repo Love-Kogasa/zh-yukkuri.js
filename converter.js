@@ -1,17 +1,14 @@
 import PinyinToKana from "pinyin-to-kana"
 import ChineseNumber from "number-to-chinese-words"
 import Pinyin from "tiny-pinyin"
-import {toKatakana} from "wanakana"
 
 export default class Converter {
   constructor(map) {
     this.toKana = new PinyinToKana(map)
   }
   koe(string) {
-    return toKatakana(
-      this.kanaify(
-        this.number(string)
-      )
+    return this.kanaify(
+      this.number(string)
     )
   }
   kanaify(string) {
