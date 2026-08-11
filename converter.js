@@ -18,7 +18,6 @@ export default class Converter {
         .join( "" ))
       .replaceAll("\n", " ")
       .replaceAll("_", " ")
-      .replaceAll(" ", ",")
   }
   number(string) {
     return string.replace(/-{0,1}\d+(\.\d+){0,1}/g, num => {

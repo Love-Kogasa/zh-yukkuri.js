@@ -8,11 +8,12 @@ export async function load(zippath, dllpath, option) {
   var aqtk = await loadAquesTalk(zippath, dllpath, option)
   var kanaify = new Converter(option.map)
   var k2k = option.k2k || {toKana: toKatakana}
-  return {
-    run: (koe, spd) => aqtk.run(k2k.toKana(kanaify.koe(koe)), spd),
+  var self
+  return (self = {
+    run: (koe, spd) => aqtk.run(self.koe(koe), spd),
     destroy: aqtk.destroy.bind(aqtk),
-    koe: kanaify.koe.bind(kanaify)
-  }
+    koe: (str) => k2k.toKana(kanaify.koe(str)).replaceAll(" ", ",")
+  })
 }
 
 export {Converter}
