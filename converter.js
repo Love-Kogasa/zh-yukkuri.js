@@ -24,7 +24,7 @@ export default class Converter {
       try {
         return ChineseNumber.toWords(Number (num))
       } catch(error) {
-        return matched
+        return num
       }
     })
   }
