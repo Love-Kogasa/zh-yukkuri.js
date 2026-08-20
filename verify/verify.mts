@@ -11,7 +11,7 @@
  *     来源:zh-yukkuri-offline 仓库 static/voices/(v86.wasm 与全部 zip 原样),
  *     或 Aquest 官网评估版(许可:仅评估用途、不可再分发)。
  *   - npm i(v86 与 jszip 是 devDependencies)
- *   - npm run build(引擎侧验证的是 dist 产物)
+ *   - npm run build(引擎侧验证的是根目录 yukkuri-zh.dist.js)
  *   - Node ≥ 22.6(--experimental-strip-types);平台不限。
  *
  * 每个用例:

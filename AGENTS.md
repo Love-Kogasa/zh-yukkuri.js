@@ -55,6 +55,7 @@ verify/             (可选)与原版 DLL 的交叉验证(v86 模拟器,含 thir
 tsdown.config.ts    构建配置(IIFE 契约、文件名插件、依赖内联清单)
 jest.config.cjs     测试配置(模块映射 + ESM 放行,动它前先看"已知坑")
 docs/ENGINE.md      引擎来历与验证方法(人类叙事)
+CHANGELOG.md        变更记录(v2 起维护,Keep a Changelog 风格)
 yukkuri-zh.dist.js       下游直接 <script> 引入的产物(仓库根,沿用 1.x 路径;构建生成,勿手改)
 ```
 
@@ -68,8 +69,8 @@ yukkuri-zh.dist.js       下游直接 <script> 引入的产物(仓库根,沿用 
 2. **`src/engine/` 的行为语义不可"顺手修"**(见下节协议)。
 3. **`src/engine/data/` 与 voice 常量不可手改**——它们是从原版引擎逐字节提取的,
    手改即破坏逐字节等价。
-4. **不新增运行时依赖**(dist 单文件体积敏感)。若确有必要:package.json dependencies
-   + tsdown.config.ts 的 `deps.alwaysBundle` 列表必须同步加,且确认 dist 仍为单文件。
+4. **不新增运行时依赖**(产物单文件体积敏感)。若确有必要:package.json dependencies
+   + tsdown.config.ts 的 `deps.alwaysBundle` 列表必须同步加,且确认产物仍为单文件。
 5. **测试框架是 jest**。不要引入 bun/vitest,不要把测试改成别的运行器。
 6. **IIFE 输出文件名由 tsdown 插件固定**(`fixedName` → 根目录 `yukkuri-zh.dist.js`,且 `clean:false`
    防止清空仓库根)。下游用 `<script>` 引用这个文件名,改它属于破坏性变更。
@@ -111,7 +112,7 @@ yukkuri-zh.dist.js       下游直接 <script> 引入的产物(仓库根,沿用 
 - **bakak2k 是 ESM-only 包**:jest 能跑它靠 jest.config.cjs 里
   `transformIgnorePatterns` 的放行——"清理"这行配置会让测试挂掉。
 - **tsdown 的 `deps.alwaysBundle`**:不加它,运行时依赖会被 external 掉,
-  dist 变成需要全局变量的残废包(症状:IIFE 尾部出现 `wanakana` 等标识符引用)。
+  产物会变成需要全局变量的残废包(症状:IIFE 尾部出现 `wanakana` 等标识符引用)。
 - 转换链依赖 `option.map`(pinyin-to-kana 的 mapping.tsv 内容),
   不传时拼音转换不工作——这是上游设计,不是 bug。
 

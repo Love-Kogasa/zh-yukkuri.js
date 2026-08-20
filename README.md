@@ -34,7 +34,7 @@ await aqtk.destroy() // 销毁(现为空操作)
   (开发侧两万余组用例验证 + Windows 真机原生 DLL 交叉复核,
    来历与验证方法详见 [docs/ENGINE.md](docs/ENGINE.md))
 * `src/engine/` 从上游单向同步(勿直接改,改了也会被下次同步覆盖)
-- 错误契约:`synth()` 返回 `{ok:false, code:102|105}`(src/ 是 TS ESM 源,可直接 import);`load().run()` 对错误
+- 错误契约:`synth()` 返回 `{ok:false, code:102|105}`;`load().run()` 对错误
   throw(同旧 DLL 实例行为);npm v1.0.5 风格的"错误→空输出"用 `engine/run()`
 
 # Build
@@ -44,7 +44,7 @@ await aqtk.destroy() // 销毁(现为空操作)
 v2 换成 tsdown(Rolldown 内核),顺带全仓 TypeScript 化:
 ```bash
 npm i
-npm run build     # tsdown → yukkuri-zh.dist.js (根目录, 单文件 IIFE, ~2.3MB) + dist/ (ESM)
+npm run build     # tsdown → yukkuri-zh.dist.js (根目录, 单文件 IIFE, ~2.3MB)
 npm test          # jest:引擎 golden 冒烟 + load() 契约
 npm run typecheck # tsc --noEmit
 npm run verify    # (可选)与原版 DLL 逐字节交叉对比
@@ -53,7 +53,7 @@ npm run verify    # (可选)与原版 DLL 逐字节交叉对比
 
 verify 是开发侧重验证工具,不进 CI。运行前置:
 
-- Node ≥ 22.6;`npm i`;`npm run build`(引擎侧验证的是 dist 产物)
+- Node ≥ 22.6;`npm i`;`npm run build`(引擎侧验证的是根目录 yukkuri-zh.dist.js)
 - `verify/assets/` 放入自取资源(目录已被 .gitignore 排除,不入库):
   - `v86.wasm` —— v86 模拟器的 wasm 内核
   - 8 个 voice zip:`f1.zip` / `f2.zip` / `r1.zip` / `m1.zip` / `m2.zip` /
