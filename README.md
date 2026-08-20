@@ -6,7 +6,9 @@
 > [y52en/aquestalk.js](https://github.com/y52en/aquestalk.js) 的 src/v2)
 > ~~需要 v86.wasm + AquesTalk DLL zip(每个 voice 一个)~~
 > 加载一个 `yukkuri-zh.dist.js`(仓库根,沿用旧路径)即可离线合成,运行时资源 ~2.6MB → 0,
-> 单句合成毫秒级(桌面实测约 1-2ms;旧路径换声库需重新下载资源并初始化 v86,秒级)。项目也全面 TypeScript 化了。
+> 单句合成毫秒级(桌面实测:热合成约 1-4ms,换声库首合成约 13ms;旧路径热合成数十 ms,
+> 换声库需重新加载资源并初始化 v86,桌面实测约 0.3s,浏览器端另计 ~2.6MB 下载)。
+> 项目也全面 TypeScript 化了。
 
 # Usage
 你只需要加载编译好的 yukkuri-zh.dist.js(仓库根,沿用旧路径)就足够了

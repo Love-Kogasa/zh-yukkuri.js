@@ -16,7 +16,8 @@
 - 全仓 TypeScript 化;构建从 webpack/build.sh 迁移到 tsdown
 - **BREAKING**:`load()` 签名改为单参数 `load(option)` —— 1.x 的
   zippath/dllpath 两参数随内置引擎移除,旧调用点需更新
-- 运行时需下载资源 ~2.6MB → 0;单句合成毫秒级(旧路径换声库需重新下载资源并初始化 v86,秒级)
+- 运行时需下载资源 ~2.6MB → 0;单句热合成约 1-4ms、换声库首合成约 13ms
+  (旧路径热合成数十 ms,换声库需重新加载资源并初始化 v86,桌面实测约 0.3s)
 
 ### 移除
 - `aquestalk.js` npm 依赖(引擎已内置)、webpack 配置、node-stub
