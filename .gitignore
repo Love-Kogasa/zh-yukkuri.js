@@ -2,3 +2,4 @@
 *.bak
 node_modules
 keep-deepcode.txt
+verify/assets/
