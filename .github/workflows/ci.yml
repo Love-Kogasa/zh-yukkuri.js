@@ -1,0 +1,23 @@
+name: CI
+on:
+  push:
+    branches: [main, purejs-engine]
+  pull_request:
+
+jobs:
+  build-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci || npm install
+      - run: npm run typecheck
+      - run: npm run build
+      - name: dist size sanity
+        run: |
+          SIZE=$(wc -c < yukkuri-zh.dist.js)
+          echo "dist size: $SIZE bytes"
+          [ "$SIZE" -lt 6000000 ] || { echo "dist unexpectedly large"; exit 1; }
+      - run: npm test
