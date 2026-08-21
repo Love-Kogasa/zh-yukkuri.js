@@ -69,7 +69,7 @@ yukkuri-zh.dist.js       下游直接 <script> 引入的产物(仓库根,沿用 
    - 错误码 102(音素规则拒绝)/ 105(无法解析)与原版一致,不可改语义。
 2. **`src/engine/` 的行为语义不可"顺手修"**(见下节协议)。
 3. **`src/engine/data/` 与 voice 常量不可手改**——它们是从原版引擎逐字节提取的,
-   手改即破坏逐字节等价。
+   手改即破坏逐字节等价(来历与再生方式见 docs/ENGINE.md「数据表从哪来」)。
 4. **不新增运行时依赖**(产物单文件体积敏感)。若确有必要:package.json dependencies
    + tsdown.config.ts 的 `deps.alwaysBundle` 列表必须同步加,且确认产物仍为单文件。
 5. **测试框架是 jest**。不要引入 bun/vitest,不要把测试改成别的运行器。
